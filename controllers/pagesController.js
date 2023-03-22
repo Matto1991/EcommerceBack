@@ -16,20 +16,19 @@
  * no debería existir.
  */
 
+const { Article } = require("../models");
+
 async function showHome(req, res) {
-  res.render("pages/home");
+  const articles = await Article.findAll();
+  res.render("home", { articles });
 }
 
 async function showContact(req, res) {
-  res.render("pages/contact");
+  res.render("contact");
 }
 
 async function showAboutUs(req, res) {
-  res.render("pages/aboutUs");
-}
-
-async function show404(req, res) {
-  res.status(404).render("pages/404");
+  res.render("aboutUs");
 }
 
 // Otros handlers...
