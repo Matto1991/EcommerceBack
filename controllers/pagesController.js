@@ -19,7 +19,7 @@
 const { Article } = require("../models");
 
 async function showHome(req, res) {
-  res.json("Funciona-HOME!");
+  res.render("home");
 }
 
 async function showContact(req, res) {
