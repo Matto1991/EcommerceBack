@@ -10,13 +10,13 @@ class Product extends Model {
           autoIncrement: true,
         },
         name: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(100),
         },
         description: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(255),
         },
         images: {
-          type: DataTypes.JSON,
+          type: DataTypes.JSON(255),
         },
         price: {
           type: DataTypes.DECIMAL(10, 2),
@@ -27,12 +27,9 @@ class Product extends Model {
         featured: {
           type: DataTypes.BOOLEAN,
         },
-        slug: {
-          type: DataTypes.STRING,
-        },
         category: {
-          type: DataTypes.STRING,
-        },
+          type: DataTypes.INTEGER,
+        }
       },
       {
         sequelize,

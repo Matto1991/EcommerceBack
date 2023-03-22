@@ -29,7 +29,7 @@ class User extends Model {
           type: DataTypes.STRING(100),
           allowNull: false,
         },
-        adress: {
+        address: {
           type: DataTypes.STRING(100),
           allowNull: false,
         },
@@ -38,7 +38,7 @@ class User extends Model {
           allowNull: false,
         },
         avatar: {
-          type: DataTypes.BLOB,
+          type: DataTypes.STRING(100),
           allowNull: false,
         },
       },

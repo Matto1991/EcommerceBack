@@ -15,14 +15,18 @@ const Admin = require("./Admin");
 const User = require("./User");
 const Order = require("./Order");
 const Product = require("./Product");
+const Category = require("./Category");
 
 Admin.initModel(sequelize);
 Order.initModel(sequelize);
 Product.initModel(sequelize);
 User.initModel(sequelize);
+Category.initModel(sequelize);
 
-User.hasMany(Order, { foreignKey: "user_id" });
-Order.belongsTo(User, { foreignKey: "user_id" });
+User.hasMany(Order);
+Order.belongsTo(User);
+Category.hasMany(Product);
+Product.belongsTo(Category);
 
 module.exports = {
   sequelize,
@@ -30,4 +34,12 @@ module.exports = {
   User,
   Order,
   Product,
+  Category
 };
+
+
+// User.hasMany(Order, { foreignKey: "userId" });
+// Order.belongsTo(User, { foreignKey: "userId" });
+
+// Category.hasMany(Product, { foreignKey: "categoryId" });
+// Product.belongsTo(Category, { foreignKey: "categoryId" });
