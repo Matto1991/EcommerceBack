@@ -1,19 +1,45 @@
 const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcryptjs");
 
 class User extends Model {
+  async isValidPassword(password) {
+    return await bcrypt.compare(password, this.password);
+  }
   static initModel(sequelize) {
     User.init(
       {
         id: {
-          type: DataTypes.BIGINT.UNSIGNED,
+          type: DataTypes.INTEGER.UNSIGNED,
           primaryKey: true,
           autoIncrement: true,
         },
         firstname: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(100),
+          allowNull: false,
         },
         lastname: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(100),
+          allowNull: false,
+        },
+        password: {
+          type: DataTypes.STRING(100),
+          allowNull: false,
+        },
+        email: {
+          type: DataTypes.STRING(100),
+          allowNull: false,
+        },
+        adress: {
+          type: DataTypes.STRING(100),
+          allowNull: false,
+        },
+        phone: {
+          type: DataTypes.STRING(20),
+          allowNull: false,
+        },
+        avatar: {
+          type: DataTypes.BLOB,
+          allowNull: false,
         },
       },
       {
@@ -21,8 +47,18 @@ class User extends Model {
         modelName: "user",
       },
     );
+
+    User.beforeBulkCreate(async (users) => {
+      for (const user of users) {
+        user.password = await bcrypt.hash(user.password, 10);
+      }
+    });
+
+    User.beforeCreate(async (user) => {
+      user.password = await bcrypt.hash(user.password, 10);
+    });
+
     return User;
   }
 }
-
 module.exports = User;

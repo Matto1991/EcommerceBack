@@ -1,19 +1,19 @@
-const { Article } = require("../models");
+const { Product } = require("../models");
 
 // Display a listing of the resource.
-async function index(req, res) {}
+async function index(req, res) {
+  const products = await Product.findAll();
+  return res.json(products);
+}
 
 // Display the specified resource.
 async function show(req, res) {}
 
 // Show the form for creating a new resource
-async function create(req, res) {}
+async function showCategory(req, res) {}
 
 // Store a newly created resource in storage.
 async function store(req, res) {}
-
-// Show the form for editing the specified resource.
-async function edit(req, res) {}
 
 // Update the specified resource in storage.
 async function update(req, res) {}
@@ -27,9 +27,8 @@ async function destroy(req, res) {}
 module.exports = {
   index,
   show,
-  create,
+  showCategory,
   store,
-  edit,
   update,
   destroy,
 };
