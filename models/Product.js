@@ -27,9 +27,6 @@ class Product extends Model {
         featured: {
           type: DataTypes.BOOLEAN,
         },
-        category: {
-          type: DataTypes.INTEGER,
-        }
       },
       {
         sequelize,

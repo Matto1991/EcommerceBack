@@ -1,6 +1,6 @@
 const { Product } = require("../models");
 
-module.exports = async () => {
+module.exports = async (Product) => {
   const products = [
     {
       name: "The Leonard Sofa",
@@ -10,7 +10,7 @@ module.exports = async () => {
       price: 2925,
       stock: 20,
       featured: true,
-      category: 1,
+      categoryId: 1,
     },
     {
       name: "The Muir Sofa",
@@ -20,7 +20,7 @@ module.exports = async () => {
       price: 4100,
       stock: 20,
       featured: false,
-      category: 1,
+      categoryId: 1,
     },
     {
       name: "The Leroy Chair",
@@ -30,7 +30,7 @@ module.exports = async () => {
       price: 1575,
       stock: 20,
       featured: false,
-      category: 1,
+      categoryId: 1,
     },
     {
       name: "The Vestry Nesting Tables",
@@ -40,7 +40,7 @@ module.exports = async () => {
       price: 1275,
       stock: 20,
       featured: false,
-      category: 1,
+      categoryId: 1,
     },
     {
       name: "The Franklin Bench",
@@ -50,7 +50,7 @@ module.exports = async () => {
       price: 1775,
       stock: 20,
       featured: false,
-      category: 1,
+      categoryId: 1,
     },
     //--------------------------------------
     {
@@ -61,7 +61,6 @@ module.exports = async () => {
       price: 3800,
       stock: 20,
       featured: true,
-      category: 1,
     },
 
     //------------------------------------ Dining
@@ -73,7 +72,6 @@ module.exports = async () => {
       price: 2450,
       stock: 20,
       featured: true,
-      category: 1,
     },
   ];
 
