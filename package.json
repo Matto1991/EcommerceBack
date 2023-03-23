@@ -12,6 +12,7 @@
   "author": "Hack Academy",
   "license": "ISC",
   "dependencies": {
+    "@types/sequelize": "^4.28.14",
     "bcryptjs": "^2.4.3",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
