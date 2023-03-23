@@ -17,9 +17,11 @@ async function show(req, res) {
       where: { name },
       include: { model: Product },
     });
+    //condicion
+
     return res.json(category);
   } catch (err) {
-    console.log("Category not found");
+    console.log(err);
   }
 }
 
