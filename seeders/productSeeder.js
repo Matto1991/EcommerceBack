@@ -1,12 +1,12 @@
-const { Product } = require("../models");
+const {Product} = require("../models")
 
-module.exports = async (Product) => {
+module.exports = async () => {
   const products = [
     {
       name: "The Leonard Sofa",
       description:
         "The sculptural curves of The Leonard Sofa offer refined elegance and luxurious comfort. Slipcovered in linen for a relaxed, textural feel.",
-      images: [],
+      images: ["img/Living/TheLeonardSofa.png"],
       price: 2925,
       stock: 20,
       featured: true,
