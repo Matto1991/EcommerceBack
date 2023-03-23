@@ -7,7 +7,7 @@ module.exports = async () => {
       name: "The Leonard Sofa",
       description:
         "The sculptural curves of The Leonard Sofa offer refined elegance and luxurious comfort. Slipcovered in linen for a relaxed, textural feel.",
-      images: "",
+      images: ["img/Living/TheLeonardSofa.png"],
       price: 2925,
       stock: 20,
       featured: true,
