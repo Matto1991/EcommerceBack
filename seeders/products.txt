@@ -121,7 +121,7 @@ price: $2475
 
 Sets: 
 
-name: The Morro Nesting Tablea
+name: The Morro Nesting Tablea,
 description: Classic silhouettes reimagined in a serene yet playful palette, creating softness in both texture and tone for a harmonious retreat of subtle coastal color.
 images:
 price: $2950

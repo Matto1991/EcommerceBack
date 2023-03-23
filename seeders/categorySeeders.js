@@ -1,12 +1,13 @@
 const { Category } = require("../models");
+const db = require("../models");
 
 module.exports = async () => {
   const categories = [
-    { name: "bedroom", },
-    { name: "living" },
-    { name: "sets" },
-    { name: "dining" },
+    { name: "Living" },
+    { name: "Bedroom", },
+    { name: "Dining" },
+    { name: "Sets" },
   ];
-  await Category.bulkCreate(categories);
+  await db.Category.bulkCreate(categories);
   console.log("[Database] Se corrió el seeder de categories.");
 };

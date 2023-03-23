@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const {Sequelize}  = require("sequelize")
 
 class Order extends Model {
   static initModel(sequelize) {
@@ -10,7 +11,8 @@ class Order extends Model {
           autoIncrement: true,
         },
         status: {
-          type: DataTypes.JSON,
+          type: Sequelize.ENUM("pending", "active", "disabled"),
+          defaultValue: "pending",
         },
         adress: {
           type: DataTypes.JSON,
@@ -27,5 +29,7 @@ class Order extends Model {
     return Order;
   }
 }
+
+// console.log(Order.getAttributes().status.values);
 
 module.exports = Order;
