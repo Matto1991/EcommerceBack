@@ -28,7 +28,7 @@ module.exports = async () => {
       name: "The Leroy Chair",
       description:
         "A stunning statement piece inspired by Danish modern design. We love Leroy's curves from every angle.",
-      images: ["img/living/TheLeroyChair.png"],
+      images: ["img/living/TheLeroyChair.webp"],
       price: 1575,
       stock: 20,
       featured: false,
