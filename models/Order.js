@@ -11,7 +11,7 @@ class Order extends Model {
           autoIncrement: true,
         },
         status: {
-          type: Sequelize.ENUM("pending", "active", "disabled"),
+          type: Sequelize.ENUM("pending", "active", "disabled"), // cuales son los estado de la orden en proceso 
           defaultValue: "pending",
         },
         adress: {

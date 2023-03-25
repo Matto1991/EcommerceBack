@@ -19,7 +19,7 @@ class Product extends Model {
           type: DataTypes.JSON(255),
         },
         price: {
-          type: DataTypes.DECIMAL(10),
+          type: DataTypes.DECIMAL(10), //preguntar si los precion van a tener 
         },
         stock: {
           type: DataTypes.INTEGER,
