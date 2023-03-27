@@ -31,6 +31,17 @@ async function update(req, res) {}
 // Remove the specified resource from storage.
 async function destroy(req, res) {}
 
+// async function token (req, res) {
+//   const user = await User.findOne({email: req.body.email});
+//   if(user) {
+//     const match = await bcrypt.compare(req.body.password, user.password)
+//     console.log(match)
+//     if (match) {
+//       const token = jwt.sign({id: `${user.id}`}, "")
+//     }
+//   }
+// }
+
 // Otros handlers...
 // ...
 
