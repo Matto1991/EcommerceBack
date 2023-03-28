@@ -1,4 +1,6 @@
 const { User } = require("../models");
+const formidable = require("formidable");
+const bcrypt = require("bcryptjs");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -13,11 +15,33 @@ async function index(req, res) {
 // Display the specified resource.
 async function show(req, res) {}
 
-// Show the form for creating a new resource
-async function create(req, res) {}
-
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+  const form = formidable({
+    multiples: true,
+    uploadDir: __dirname + "/../public/img/users",
+    keepExtensions: true,
+  });
+
+  form.parse(req, async (err, fields, files) => {
+    const { firstname, lastname, email, password } = fields;
+
+    const existingEmail = await User.findOne({ where: { email } });
+
+    if (existingEmail) {
+      return res.json({ message: "User already exists" });
+    } else {
+      await User.create({
+        firstname,
+        lastname,
+        email,
+        avatar: files.image.newFilename,
+        password: password,
+      });
+      return res.end();
+    }
+  });
+}
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
@@ -57,7 +81,6 @@ async function destroy(req, res) {
 module.exports = {
   index,
   show,
-  create,
   store,
   edit,
   update,

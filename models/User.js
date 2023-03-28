@@ -31,11 +31,13 @@ class User extends Model {
         },
         address: {
           type: DataTypes.STRING(100),
-          allowNull: false,
+          allowNull: true,
+          defaultValue: "",
         },
         phone: {
           type: DataTypes.STRING(20),
-          allowNull: false,
+          allowNull: true,
+          defaultValue: "",
         },
         avatar: {
           type: DataTypes.STRING(100),
