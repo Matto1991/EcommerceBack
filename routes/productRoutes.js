@@ -4,6 +4,7 @@ const productController = require("../controllers/productController");
 
 //Public
 router.get("/", productController.index); // Home page
+router.get("/featured", productController.featured) 
 router.get("/:id", productController.show); // Product page
 
 

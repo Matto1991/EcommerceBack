@@ -1,9 +1,21 @@
 const { Product } = require("../models");
 
 // Display a listing of the resource.
+async function featured(req, res) {
+  try{
+    const products = await Product.findAll({where: {
+      featured: 1,
+    }}); 
+    return res.json(products);
+  } catch (err){
+    
+console.log(err)
+  }
+}
+
 async function index(req, res) {
   try{
-    const products = await Product.findAll();
+    const products = await Product.findAll(); 
     return res.json(products);
   } catch (err){
     
@@ -38,4 +50,5 @@ module.exports = {
   store,
   update,
   destroy,
+  featured
 };
