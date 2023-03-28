@@ -14,7 +14,7 @@ class Order extends Model {
           type: Sequelize.ENUM("pending", "active", "disabled"), // cuales son los estado de la orden en proceso 
           defaultValue: "pending",
         },
-        adress: {
+        address: {
           type: DataTypes.JSON,
         },
         products: {
