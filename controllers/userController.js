@@ -53,11 +53,12 @@ async function update(req, res) {}
 async function destroy(req, res) {
   const id = req.params.id;
   try {
-    await User.destroy({
+    const deletedUser = await User.destroy({
       where: {
         id: id,
       },
     });
+    return res.json(id);
   } catch (error) {
     console.error("Error al eliminar el usuario", error);
     res.status(500).send({ message: "Error al eliminar el producto." });
