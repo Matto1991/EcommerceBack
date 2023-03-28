@@ -1,10 +1,9 @@
-const { User } = require("../models/User");
+const { User } = require("../models");
 const jwt = require("jsonwebtoken");
 
 async function token(req, res) {
   try {
     const email = req.body.email;
-    console.log(email);
     if (!email) {
       return res.json("email requerida");
     }
@@ -14,21 +13,20 @@ async function token(req, res) {
 
     if (user) {
       const checkJwt = await user.isValidPassword(req.body.password);
-      console.log(checkJwt)
+      console.log(checkJwt);
       const token = jwt.sign({ id: user.id }, "secretKey");
 
       if (checkJwt) {
         return res.json({ token, id: user.id });
       } else {
-        return res.json( "La pass es incorrecta");
+        return res.json("La pass es incorrecta");
       }
     } else {
-      return res.json( "El user no existe");
+      return res.json("El user no existe");
     }
   } catch (err) {
     console.log(err);
   }
 }
-
 
 module.exports = { token };
