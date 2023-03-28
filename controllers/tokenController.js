@@ -14,7 +14,7 @@ async function token(req, res) {
     if (user) {
       const checkJwt = await user.isValidPassword(req.body.password);
       console.log(checkJwt);
-      const token = jwt.sign({ id: user.id }, "secretKey");
+      const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
 
       if (checkJwt) {
         return res.json({ token, id: user.id });
