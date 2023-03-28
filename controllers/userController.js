@@ -17,10 +17,7 @@ async function show(req, res) {}
 async function create(req, res) {}
 
 // Store a newly created resource in storage.
-async function store(req, res) {
-
-  
-}
+async function store(req, res) {}
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
@@ -29,7 +26,19 @@ async function edit(req, res) {}
 async function update(req, res) {}
 
 // Remove the specified resource from storage.
-async function destroy(req, res) {}
+async function destroy(req, res) {
+  const id = req.params.id;
+  try {
+    await User.destroy({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error) {
+    console.error("Error al eliminar el usuario", error);
+    res.status(500).send({ message: "Error al eliminar el producto." });
+  }
+}
 
 // async function token (req, res) {
 //   const user = await User.findOne({email: req.body.email});
