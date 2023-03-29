@@ -41,7 +41,7 @@ async function store(req, res) {
     });
     form.parse(req, async (err, fields, files) => {
       const { name, description, price, stock, featured, categoryId } = fields;
-      console.log(files)
+      console.log(files);
       // const adminLog = await User.findByPk(req.auth.id);
 
       const newProduct = await Product.create({
@@ -61,25 +61,35 @@ async function store(req, res) {
   }
 }
 
-// Update the specified resource in storage.
 async function update(req, res) {
   try {
-    const { name, description, images, price, stock, featured } = req.body;
+    const form = formidable({
+      multiples: true,
+      uploadDir: __dirname + "/../public/img/users",
+      keepExtensions: true,
+    });
+    form.parse(req, async (err, fields, files) => {
+      const { name, description, price, stock, featured, categoryId } = fields;
+      // const adminLog = await User.findByPk(req.auth.id);
 
-    const productId = req.params.id;
-    const editProduct = await Product.update(
-      {
-        name,
-        description,
-        images,
-        price,
-        stock,
-        featured,
-      },
-      { where: { id: productId } },
-    );
+      // const productId = req.params.id;
+      const editProduct = await Product.update(
+        {
+          name,
+          description,
+          images: files.image.newFilename,
+          price,
+          stock,
+          featured,
+          categoryId,
+        },
+        {
+          where: { id: req.params.id },
+        },
+      );
 
-    return res.json(editProduct);
+      return res.json(editProduct);
+    });
   } catch (err) {
     console.log(err);
   }
