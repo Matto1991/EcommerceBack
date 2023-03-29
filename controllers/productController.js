@@ -1,4 +1,5 @@
 const { Product } = require("../models");
+const formidable = require("formidable");
 
 // Display a listing of the resource.
 async function featured(req, res) {
@@ -33,20 +34,28 @@ async function show(req, res) {
 // Store a newly created resource in storage.
 async function store(req, res) {
   try {
-    const { name, description, images, price, stock, featured } = req.body;
-
-    const newProduct = await Product.create({
-      name,
-      description,
-      images,
-      price,
-      stock,
-      featured,
+    const form = formidable({
+      multiples: true,
+      uploadDir: __dirname + "/../public/img/users",
+      keepExtensions: true,
     });
+    form.parse(req, async (err, fields, files) => {
+      const { name, description, price, stock, featured, categoryId } = fields;
+      console.log(files)
+      // const adminLog = await User.findByPk(req.auth.id);
 
-    newProduct.save();
-
-    return res.json(newProduct);
+      const newProduct = await Product.create({
+        name,
+        description,
+        images: files.image.newFilename,
+        price,
+        stock,
+        featured,
+        categoryId,
+      });
+      newProduct.save();
+      return res.json(newProduct);
+    });
   } catch (err) {
     console.log(err);
   }
