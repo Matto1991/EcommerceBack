@@ -12,21 +12,24 @@ async function store(req, res) {
   });
 
   form.parse(req, async (err, fields, files) => {
-    const { firstname, lastname, email, password } = fields;
+    try {
+      const { firstname, lastname, email, password } = fields;
 
-    const existingEmail = await Admin.findOne({ where: { email } });
-
-    if (existingEmail) {
-      return res.json({ message: "Admin already exists" });
-    } else {
-      await Admin.create({
-        firstname,
-        lastname,
-        email,
-        avatar: files.image.newFilename,
-        password: password,
-      });
-      return res.end();
+      const existingEmail = await Admin.findOne({ where: { email } });
+      if (existingEmail) {
+        return res.json({ message: "Admin/User already exists", error: "Repeated email" });
+      } else {
+        await Admin.create({
+          firstname,
+          lastname,
+          email,
+          avatar: files.image.newFilename,
+          password: password,
+        });
+        return res.json({ message: "Admin creado" });
+      }
+    } catch (error) {
+      return res.json({ error: "Error al crear" });
     }
   });
 }
