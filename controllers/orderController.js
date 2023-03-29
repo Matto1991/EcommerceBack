@@ -1,4 +1,4 @@
-const { Order } = require("../models");
+const { Order, User } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -24,7 +24,26 @@ async function show(req, res) {
 async function create(req, res) {}
 
 // Store a newly created resource in storage.
-async function store(req, res) {}
+async function store(req, res) {
+  console.log(
+    "*************************************************************************************************************************",
+  );
+  console.log(req.auth);
+
+  const userId = req.auth.id;
+  const { products, details } = req.body;
+
+  console.log("details", details);
+  const user = await User.findByPk(userId);
+
+  const newOrder = await Order.create({
+    userId: user.id,
+    products,
+    details,
+  });
+
+  return res.json("Orden creada");
+}
 
 // Show the form for editing the specified resource.
 async function edit(req, res) {}

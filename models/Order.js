@@ -18,6 +18,9 @@ class Order extends Model {
         products: {
           type: DataTypes.JSON,
         },
+        details: {
+          type: DataTypes.JSON,
+        },
       },
       {
         sequelize,
