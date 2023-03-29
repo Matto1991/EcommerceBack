@@ -41,11 +41,12 @@ async function destroy(req, res) {
   console.log(req.params.id);
   const id = req.params.id;
   try {
-    await Product.destroy({
+    const deletedProduct = await Product.destroy({
       where: {
         id: id,
       },
     });
+    return res.json(id);
   } catch (error) {
     console.error("Error al eliminar el producto", error);
     res.status(500).send({ message: "Error al eliminar el producto." });
