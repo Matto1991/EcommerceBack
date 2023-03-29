@@ -13,7 +13,16 @@ async function index(req, res) {
 }
 
 // Display the specified resource.
-async function show(req, res) {}
+async function show(req, res) {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    //remover password
+    return res.json(user);
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 // Store a newly created resource in storage.
 async function store(req, res) {
@@ -43,11 +52,22 @@ async function store(req, res) {
   });
 }
 
+// Update the specified resource in storage.
+async function update(req, res) {
+  try {
+    const { id } = req.params;
+    const { firstname, lastname, email } = req.body;
+
+    await User.update({ firstname, lastname, email }, { where: { id } });
+    const updatedUser = await User.findByPk(id);
+    res.status(200).json({ user: updatedUser }); // Devolver el usuario actualizado
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error del servidor" });
+  }
+}
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
-
-// Update the specified resource in storage.
-async function update(req, res) {}
 
 // Remove the specified resource from storage.
 async function destroy(req, res) {
