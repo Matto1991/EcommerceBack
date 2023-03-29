@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
-const {Sequelize}  = require("sequelize")
+const { Sequelize } = require("sequelize");
 
 class Order extends Model {
   static initModel(sequelize) {
@@ -11,12 +11,10 @@ class Order extends Model {
           autoIncrement: true,
         },
         status: {
-          type: Sequelize.ENUM("pending", "active", "disabled"), // cuales son los estado de la orden en proceso 
+          type: Sequelize.ENUM("pending", "active", "disabled"), // cuales son los estado de la orden en proceso
           defaultValue: "pending",
         },
-        address: {
-          type: DataTypes.JSON,
-        },
+
         products: {
           type: DataTypes.JSON,
         },
