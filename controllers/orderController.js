@@ -1,4 +1,4 @@
-const { Order, User } = require("../models");
+const { Order, User, Product } = require("../models");
 
 // Display a listing of the resource.
 async function index(req, res) {
@@ -30,21 +30,37 @@ async function store(req, res) {
   );
   console.log(req.auth);
 
-  const userId = req.auth.id;
-  const { products, details } = req.body;
+  try {
+    const userId = req.auth.id;
+    const { products, details } = req.body;
 
-  console.log("details", details);
-  const user = await User.findByPk(userId);
+    const user = await User.findByPk(userId);
 
-  const newOrder = await Order.create({
-    userId: user.id,
-    products,
-    details,
-  });
+    const newOrder = await Order.create({
+      userId: user.id,
+      products,
+      details,
+    });
 
-  return res.json("Orden creada");
+    for (const product of products) {
+      const productDB = await Product.findByPk(product.id);
+      if (!productDB) {
+        throw new Error(`Product ${product.id} not found`);
+      }
+
+      const newStock = productDB.stock - product.quantity;
+      if (newStock < 0) {
+        throw new Error(`Product ${product.id} stock not available`);
+      }
+
+      await productDB.update({ stock: newStock });
+    }
+
+    return res.json("Orden creada");
+  } catch (err) {
+    console.log(err);
+  }
 }
-
 // Show the form for editing the specified resource.
 async function edit(req, res) {}
 

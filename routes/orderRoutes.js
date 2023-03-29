@@ -5,7 +5,7 @@ const orderController = require("../controllers/orderController");
 const { expressjwt: checkJwt } = require("express-jwt");
 
 router.get("/", orderController.index); // Admin panel - Dashboard
-
+router.get("/:id", orderController.show);
 router.post(
   "/",
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
