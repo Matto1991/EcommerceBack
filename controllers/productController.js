@@ -1,7 +1,6 @@
 const { Product } = require("../models");
 const formidable = require("formidable");
 
-// Display a listing of the resource.
 async function featured(req, res) {
   try {
     const products = await Product.findAll({
@@ -17,6 +16,7 @@ async function featured(req, res) {
 
 async function index(req, res) {
   try {
+    console.log(2);
     const products = await Product.findAll();
     return res.json(products);
   } catch (err) {

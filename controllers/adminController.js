@@ -1,9 +1,23 @@
 const { Admin } = require("../models");
 const formidable = require("formidable");
+
 async function index(req, res) {
   const admin = await Admin.findAll();
   res.json(admin);
 }
+
+async function show(req, res) {
+  const { id } = req.params;
+  try {
+    const admin = await Admin.findByPk(id, {
+      attributes: { exclude: ["password"] },
+    });
+    return res.json(admin);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 async function store(req, res) {
   const form = formidable({
     multiples: true,
@@ -34,7 +48,43 @@ async function store(req, res) {
   });
 }
 
+async function update(req, res) {
+  try {
+    const { id } = req.params;
+    const { firstname, lastname, email } = req.body;
+
+    console.log(lastname);
+    await Admin.update({ firstname, lastname, email }, { where: { id } });
+    const updatedAdmin = await Admin.findByPk(id, {
+      attributes: { exclude: ["password"] },
+    });
+
+    res.json({ admin: updatedAdmin });
+  } catch (error) {
+    console.error("Error: unable to edit admin", error);
+    res.status(500).json({ message: "Error: unable to edit admin" });
+  }
+}
+
+async function destroy(req, res) {
+  const { id } = req.params;
+  try {
+    await Admin.destroy({
+      where: {
+        id,
+      },
+    });
+    return res.json(id);
+  } catch (error) {
+    console.error("Error: unable to delete admin", error);
+    res.status(500).send({ message: "Error: unable to delete admin." });
+  }
+}
+
 module.exports = {
   index,
+  show,
   store,
+  update,
+  destroy,
 };
