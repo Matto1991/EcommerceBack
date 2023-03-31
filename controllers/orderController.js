@@ -41,28 +41,12 @@ async function store(req, res) {
     const userId = req.auth.id;
     const { products, details } = req.body;
 
-    const user = await User.findByPk(userId);
-
     const newOrder = await Order.create({
-      userId: user.id,
+      userId,
       products,
       details,
     });
-
-    for (const product of products) {
-      const productDB = await Product.findByPk(product.id);
-      if (!productDB) {
-        throw new Error(`Product ${product.id} not found`);
-      }
-
-      const newStock = productDB.stock - product.quantity;
-      if (newStock < 0) {
-        throw new Error(`Product ${product.id} stock not available`);
-      }
-
-      await productDB.update({ stock: newStock });
-    }
-
+    console.log("llegue");
     return res.json(newOrder);
   } catch (err) {
     console.log(err);
