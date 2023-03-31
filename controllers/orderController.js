@@ -12,11 +12,13 @@ async function index(req, res) {
 
 // Display the specified resource.
 async function show(req, res) {
+  console.log(req.auth);
+
   try {
     const order = await Order.findOne({
       where: {
-        id: req.auth.id
-      }
+        id: req.auth.id,
+      },
     });
     console.log(req.auth.id);
     return res.json(order);
