@@ -11,18 +11,13 @@ router.get(
 router.get(
   "/:id",
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
-  orderController.show
+  orderController.show,
 );
 
 router.post(
   "/",
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
   orderController.store,
-);
-router.patch(
-  "/:id",
-  checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
-  orderController.update,
 );
 
 module.exports = router;

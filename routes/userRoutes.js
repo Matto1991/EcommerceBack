@@ -15,7 +15,7 @@ router.get(
 );
 router.post(
   "/",
-  checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
+
   userController.store,
 );
 router.patch(

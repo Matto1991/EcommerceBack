@@ -16,7 +16,6 @@ async function featured(req, res) {
 
 async function index(req, res) {
   try {
-    console.log(2);
     const products = await Product.findAll();
     return res.json(products);
   } catch (err) {
@@ -26,12 +25,15 @@ async function index(req, res) {
 
 // Display the specified resource.
 async function show(req, res) {
-  const id = req.params.id;
-  const product = await Product.findByPk(id);
-  return res.json(product);
+  try {
+    const id = req.params.id;
+    const product = await Product.findByPk(id);
+    return res.json(product);
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-// Store a newly created resource in storage.
 async function store(req, res) {
   try {
     const form = formidable({
@@ -41,8 +43,6 @@ async function store(req, res) {
     });
     form.parse(req, async (err, fields, files) => {
       const { name, description, price, stock, featured, categoryId } = fields;
-      console.log(files);
-      // const adminLog = await User.findByPk(req.auth.id);
 
       const newProduct = await Product.create({
         name,
@@ -70,9 +70,7 @@ async function update(req, res) {
     });
     form.parse(req, async (err, fields, files) => {
       const { name, description, price, stock, featured, categoryId } = fields;
-      // const adminLog = await User.findByPk(req.auth.id);
 
-      // const productId = req.params.id;
       const editProduct = await Product.update(
         {
           name,
@@ -95,12 +93,10 @@ async function update(req, res) {
   }
 }
 
-// Remove the specified resource from storage.
 async function destroy(req, res) {
-  console.log(req.params.id);
   const id = req.params.id;
   try {
-    const deletedProduct = await Product.destroy({
+    await Product.destroy({
       where: {
         id: id,
       },
@@ -111,9 +107,6 @@ async function destroy(req, res) {
     res.status(500).send({ message: "Error al eliminar el producto." });
   }
 }
-
-// Otros handlers...
-// ...
 
 module.exports = {
   index,

@@ -2,10 +2,13 @@ const { Admin } = require("../models");
 const formidable = require("formidable");
 
 async function index(req, res) {
-  const admin = await Admin.findAll();
-  res.json(admin);
+  try {
+    const admin = await Admin.findAll();
+    res.json(admin);
+  } catch (err) {
+    console.log(err);
+  }
 }
-
 async function show(req, res) {
   const { id } = req.params;
   try {
@@ -53,7 +56,6 @@ async function update(req, res) {
     const { id } = req.params;
     const { firstname, lastname, email } = req.body;
 
-    console.log(lastname);
     await Admin.update({ firstname, lastname, email }, { where: { id } });
     const updatedAdmin = await Admin.findByPk(id, {
       attributes: { exclude: ["password"] },
