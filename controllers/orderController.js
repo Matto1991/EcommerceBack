@@ -13,7 +13,12 @@ async function index(req, res) {
 // Display the specified resource.
 async function show(req, res) {
   try {
-    const order = await Order.findByPk(id);
+    const order = await Order.findOne({
+      where: {
+        id: req.auth.id
+      }
+    });
+    console.log(req.auth.id);
     return res.json(order);
   } catch (err) {
     console.log(err);
@@ -56,7 +61,7 @@ async function store(req, res) {
       await productDB.update({ stock: newStock });
     }
 
-    return res.json("Orden creada");
+    return res.json(newOrder);
   } catch (err) {
     console.log(err);
   }
