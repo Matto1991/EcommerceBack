@@ -1,6 +1,6 @@
 //  node createDatabaseTables.js
 //  npm run tables
-
+require("dotenv").config();
 const db = require("./models");
 
 async function createDatabaseTables() {

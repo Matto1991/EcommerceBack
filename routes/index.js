@@ -4,6 +4,7 @@ const adminRoutes = require("./adminRoutes");
 const orderRoutes = require("./orderRoutes");
 const categoryRoutes = require("./categoryRoutes");
 const authRoutes = require("./authRoutes");
+const resetRoutes = require("./resetRoutes")
 
 module.exports = (app) => {
   app.use("/orders", orderRoutes);
@@ -12,4 +13,5 @@ module.exports = (app) => {
   app.use("/admins", adminRoutes);
   app.use("/categories", categoryRoutes);
   app.use("/auth", authRoutes);
+  app.use("/reset", resetRoutes);
 };
