@@ -4,13 +4,13 @@ const db = require("../models");
 module.exports = async () => {
   const users = [
     {
-      firstname: "Frank",
-      lastname: "Loi",
+      firstname: "Usuario",
+      lastname: "Prueba",
       password: "1234",
-      email: "frank@loi.com",
+      email: "usuario@ecozy.com",
       address: "Avenida Rivera 250",
       phone: "096458789",
-      avatar: "urlavatar",
+      avatar: "user.png",
     },
   ];
   await db.User.bulkCreate(users);

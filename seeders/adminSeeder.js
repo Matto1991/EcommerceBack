@@ -7,8 +7,8 @@ module.exports = async () => {
       firstname: "Admin",
       lastname: "Admin",
       password: "1234",
-      email: "admin@admin.com",
-      avatar: "urlavatar",
+      email: "admin@ecozy.com",
+      avatar: "admin.png",
     },
   ];
   await db.Admin.bulkCreate(admins);
