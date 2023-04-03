@@ -14,11 +14,13 @@ router.post(
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
   productController.store,
 ); // Admin store product
+
 router.patch(
   "/:id",
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
   productController.update,
 ); // Admin update product
+
 router.delete(
   "/:id",
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),

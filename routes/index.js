@@ -10,8 +10,8 @@ module.exports = (app) => {
   app.use("/orders", orderRoutes);
   app.use("/products", productRoutes);
   app.use("/users", userRoutes);
-  app.use("/admins", adminRoutes);
   app.use("/categories", categoryRoutes);
-  app.use("/auth", authRoutes);
   app.use("/reset", resetRoutes);
+  app.use("/admins", adminRoutes);
+  app.use("/auth", authRoutes);
 };

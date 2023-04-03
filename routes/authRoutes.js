@@ -4,6 +4,6 @@ const authController = require("../controllers/authController");
 const { requireAdmin } = require("../middlewares/adminMiddleware");
 
 router.post("/users", authController.userToken);
-router.post("/admins", requireAdmin, authController.adminToken);
+router.post("/admins", authController.adminToken);
 
 module.exports = router;
