@@ -8,20 +8,20 @@ router.get("/", categoryController.index); // Admin page
 router.get("/:name", categoryController.show); // Category page
 router.post(
   "/store",
-//   requireAdmin,
+  //   requireAdmin,
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
   categoryController.store,
 );
 router.patch(
   "/:id",
-//   requireAdmin,
+  //   requireAdmin,
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
   categoryController.update,
 );
 router.delete(
   "/:id",
-//   requireAdmin,
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
+  // requireAdmin,
   categoryController.destroy,
 );
 module.exports = router;

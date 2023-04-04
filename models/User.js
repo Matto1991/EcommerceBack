@@ -43,6 +43,11 @@ class User extends Model {
           type: DataTypes.STRING(100),
           allowNull: false,
         },
+        isAdmin: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          defaultValue: false,
+        },
       },
       {
         sequelize,

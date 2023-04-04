@@ -11,8 +11,8 @@ async function userToken(req, res) {
       const checkJwt = await user.isValidPassword(password);
 
       if (checkJwt) {
-        const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY);
-        return res.json({ token, id: user.id });
+        const token = jwt.sign({ id: user.id, isAdmin: false }, process.env.SECRET_KEY);
+        return res.json({ token, id: user.id, isAdmin: false });
       } else {
         return res.json({ message: "Invalid credentials" });
       }
@@ -34,8 +34,8 @@ async function adminToken(req, res) {
       const checkJwt = await admin.isValidPassword(password);
 
       if (checkJwt) {
-        const token = jwt.sign({ id: admin.id }, process.env.SECRET_KEY);
-        return res.json({ token, id: admin.id });
+        const token = jwt.sign({ id: admin.id, isAdmin: true }, process.env.SECRET_KEY);
+        return res.json({ token, id: admin.id, isAdmin: true });
       } else {
         return res.json({ message: "Invalid credentials" });
       }

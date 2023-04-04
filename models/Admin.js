@@ -33,6 +33,11 @@ class Admin extends Model {
           type: DataTypes.STRING(100),
           allowNull: false,
         },
+        isAdmin: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          defaultValue: true,
+        },
       },
       {
         sequelize,
