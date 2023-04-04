@@ -21,7 +21,7 @@ module.exports = async () => {
       images: ["img/Living/TheMuirSofa.png"],
       price: 4100,
       stock: 20,
-      featured: false,
+      featured: true,
       categoryId: 1,
     },
     {
