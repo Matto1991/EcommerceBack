@@ -11,13 +11,13 @@ async function index(req, res) {
 
 async function show(req, res) {
   try {
-    const order = await Order.findOne({
+    const orders = await Order.findAll({
       where: {
         id: req.auth.id,
       },
     });
 
-    return res.json(order);
+    return res.json(orders);
   } catch (err) {
     console.log(err);
   }
