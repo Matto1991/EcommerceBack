@@ -8,10 +8,17 @@ router.get(
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
   orderController.index,
 );
+
 router.get(
   "/:id",
   checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
   orderController.show,
+);
+
+router.get(
+  "/details/:id",
+  checkJwt({ secret: process.env.SECRET_KEY, algorithms: ["HS256"] }),
+  orderController.showDetails,
 );
 
 router.post(

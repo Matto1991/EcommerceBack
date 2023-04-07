@@ -23,6 +23,19 @@ async function show(req, res) {
   }
 }
 
+async function showDetails (req, res) {
+  try {
+    const orders = await Order.findByPk(req.params.id, {
+      where: {
+        userId: req.auth.id
+      }
+    })
+    return res.json(orders)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 async function store(req, res) {
   try {
     const userId = req.auth.id;
@@ -60,4 +73,5 @@ module.exports = {
   index,
   show,
   store,
+  showDetails
 };
