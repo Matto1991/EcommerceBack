@@ -13,7 +13,7 @@ async function show(req, res) {
   try {
     const orders = await Order.findAll({
       where: {
-        id: req.auth.id,
+        userId: req.auth.id,
       },
     });
 
