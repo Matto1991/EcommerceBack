@@ -49,7 +49,7 @@ async function adminToken(req, res) {
           id: admin.id,
           firstname: admin.firstname,
           lastname: admin.lastname,
-          image: admin.image,
+          avatar: admin.avatar,
           isAdmin: true,
         });
       } else {
