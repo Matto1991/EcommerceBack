@@ -14,13 +14,11 @@ async function userToken(req, res) {
         const token = jwt.sign({ id: user.id, isAdmin: false }, process.env.SECRET_KEY);
         return res.json({
           token,
-          user: {
-            id: user.id,
-            firstname: user.firstname,
-            lastname: user.lastname,
-            avatar: user.avatar,
-            isAdmin: false,
-          },
+          id: user.id,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          avatar: user.avatar,
+          isAdmin: false,
         });
       } else {
         return res.json({ message: "Invalid credentials" });
@@ -46,6 +44,7 @@ async function adminToken(req, res) {
         const token = jwt.sign({ id: admin.id, isAdmin: true }, process.env.SECRET_KEY);
         return res.json({
           token,
+
           id: admin.id,
           firstname: admin.firstname,
           lastname: admin.lastname,
