@@ -5,7 +5,7 @@ async function featured(req, res) {
   try {
     const products = await Product.findAll({
       where: {
-        featured: 1,
+        featured: true,
       },
     });
     return res.json(products);
